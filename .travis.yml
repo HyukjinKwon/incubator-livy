@@ -69,7 +69,7 @@ before_script:
   - sudo pip3 install "requests >= 2.10.0" pytest flaky requests-kerberos
 
 script:
-  - mvn $MVN_FLAG verify -Dmaven.test.error.ignore=true -Dmaven.test.failure.ignore=true
+  - mvn $MVN_FLAG verify -e
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
