@@ -59,6 +59,13 @@ before_install:
   - sudo python3 -m pip install cloudpickle
 
 install:
+  - cd ..
+  - git clone https://github.com/apache/spark.git
+  - cd spark
+  - git checkout v2.4.0-rc3
+  - ./build/mvn -DskipTests -Psparkr -Phive -Phive-thriftserver install
+  - cd ..
+  - cd incubator-livy
   - mvn $MVN_FLAG install -Dskip -DskipTests -DskipITs -Dmaven.javadoc.skip=true -B -V
 
 before_script:
