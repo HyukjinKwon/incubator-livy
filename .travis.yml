@@ -21,10 +21,6 @@ language: scala
 
 matrix:
   include:
-  - name: "Spark 2.2 Unit Tests"
-    env: MVN_FLAG='-Pthriftserver -DskipITs'
-  - name: "Spark 2.2 ITs"
-    env: MVN_FLAG='-Pthriftserver -DskipTests'
   - name: "Spark 2.3 Unit Tests"
     env: MVN_FLAG='-Pspark-2.3 -Pthriftserver -DskipITs'
   - name: "Spark 2.3 ITs"
@@ -59,6 +55,13 @@ before_install:
   - sudo python3 -m pip install cloudpickle
 
 install:
+  - cd ..
+  - git clone https://github.com/apache/spark.git
+  - cd spark
+  - git checkout v2.4.0-rc3
+  - ./build/mvn -DskipTests -Psparkr -Phive  -Phive-thriftserver --quiet install
+  - cd ..
+  - cd incubator-livy
   - mvn $MVN_FLAG install -Dskip -DskipTests -DskipITs -Dmaven.javadoc.skip=true -B -V
 
 before_script:
