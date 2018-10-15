@@ -59,7 +59,7 @@ install:
   - git clone https://github.com/apache/spark.git
   - cd spark
   - git checkout v2.4.0-rc3
-  - ./build/mvn -DskipTests -Phive -Phive-thriftserver install > tmp.log
+  - ./build/mvn -DskipTests -DskipTests -Psparkr -Phive install
   - cd ..
   - cd incubator-livy
   - mvn $MVN_FLAG install -Dskip -DskipTests -DskipITs -Dmaven.javadoc.skip=true -B -V
