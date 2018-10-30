@@ -58,7 +58,7 @@ install:
   - cd ..
   - git clone https://github.com/apache/spark.git
   - cd spark
-  - git checkout v2.4.0-rc3
+  - git checkout v2.4.0-rc5
   - ./build/mvn -DskipTests -Psparkr -Phive  -Phive-thriftserver --quiet install
   - cd ..
   - cd incubator-livy
